@@ -10,8 +10,9 @@ dependencies:
   - notebook
   - numpy
   - pandas
+  - polars
   - scikit-learn
-  - ruff
+  - ruffY
   - pytest
   - pip:
     - python-dotenv
