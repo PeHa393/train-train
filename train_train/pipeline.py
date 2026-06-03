@@ -1,14 +1,12 @@
-# %%
+from pathlib import Path
+import sys
 
 import polars as pl
-import sys
-from pathlib import Path
 
 # 把项目根目录（my_project）加入搜索路径
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from models.data_clean import xlsx_clean
-
+from models.data_clean_01 import xlsx_clean
 
 """
 1. 开始准备制作长表。
@@ -39,6 +37,4 @@ df_final = (
 )
 
 print(df_final)
-# %%
 df_final.write_csv("data/processed/traincol.csv")
-# %%

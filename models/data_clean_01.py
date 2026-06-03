@@ -1,5 +1,3 @@
-# %%
-
 import polars as pl
 
 def xlsx_clean(file_path: str, sheet_name: str, value_column_name: str) -> pl.DataFrame:
@@ -59,5 +57,3 @@ def xlsx_clean(file_path: str, sheet_name: str, value_column_name: str) -> pl.Da
     df_combined = df_combined.filter(pl.col("公历日期").str.starts_with("202"))
     
     return df_combined
-
-# %%
