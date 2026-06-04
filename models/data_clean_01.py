@@ -1,5 +1,6 @@
 import polars as pl
 
+
 def xlsx_clean(file_path: str, sheet_name: str, value_column_name: str) -> pl.DataFrame:
     df_raw = pl.read_excel(file_path, sheet_name=sheet_name)
     block_dfs = []
