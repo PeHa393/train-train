@@ -47,7 +47,7 @@ def inject_calendar_features(df_main: pl.DataFrame, date_col: str = "公历日�
             # 业务周期布尔打标
             "Is_Return_Home_Peak": 1 if -7 <= t <= -1 else 0,
             "Is_Spring_Festival_Lull": 1 if 0 <= t <= 2 else 0,
-            "Is_Return_Work_Peak": 1 if 6 <= t <= 8 else 0
+            "Is_Return_Work_Peak": 1 if 5 <= t <= 15 else 0
         })
         
     # 4. 将 160 行的列表转化为 Polars DataFrame

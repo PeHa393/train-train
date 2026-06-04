@@ -63,3 +63,10 @@ df_pr_04 = bgmf(df_pr_03 = df_pr_03)
 # 输出出出出出出出出
 print(df_pr_04)
 df_pr_04.write_csv("data/processed/characterized_traincol_02.csv")
+
+# %%
+
+"""
+3. 开始训练
+"""
+
