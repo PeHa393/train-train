@@ -6,6 +6,7 @@ import sys
 import numpy as np
 import pandas as pd
 import polars as pl
+import shap
 from sklearn.inspection import permutation_importance
 from sklearn.model_selection import GridSearchCV
 import xgboost as xgb
@@ -64,11 +65,11 @@ df_pr_02 = icf(df_main=df_pr_01, date_col="公历日期")
 df_pr_03 = ilf(df_pr_02 = df_pr_02)
 
 # 转换为长表后加入交互性特征
-df_pr_04_pd = bgmf(df_pr_03 = df_pr_03)
+df_pr_04 = bgmf(df_pr_03 = df_pr_03)
 
 # 输出出出出出出出出
-print(df_pr_04_pd)
-df_pr_04_pd.write_csv("data/processed/characterized_traincol_02.csv")
+print(df_pr_04)
+df_pr_04.write_csv("data/processed/characterized_traincol_02.csv")
 
 # %%
 
@@ -83,7 +84,7 @@ from models.training_03 import train_final_model as tfm
 
 
 # 先准备特征矩阵 X、目标向量 y、年份序列 years
-df_pd_01 = df_pr_04_pd.to_pandas()
+df_pd_01 = df_pr_04.to_pandas()
 X, y, years = prda(df_pd_01)
 
 # 输出有效的训练参数
@@ -148,3 +149,98 @@ df_2027_result, df_2028_result = rrfo(
 
 df_2027_result.to_csv("data/processed/forcasted_result_2027.csv", index=False)
 df_2028_result.to_csv("data/processed/forcasted_result_2028.csv", index=False)
+
+
+# %%
+
+"""
+5. 开始评估
+"""
+
+# 准备2026年的测试集(包含特征、目标值 y 以及元数据)
+df_y_2026 = df_pr_04.filter(pl.col("公历日期").dt.year() == 2026)
+
+# 加载模型
+model = xgb.XGBRegressor()
+model.load_model("spring_festival_xgb_v1.json")
+
+# 提取特征矩阵
+df_test_2026 = df_y_2026.select(valid_features).to_pandas()
+
+# 预测，得出预测一维数组
+y_forc_2026 = model.predict(df_test_2026)
+
+# 防负截断
+y_forc_2026 = np.clip(y_forc_2026, a_min=0, a_max=None)
+
+# 预测结果
+
+
+# 组装长表
+prediction_result = (
+    df_y_2026
+    # 预测结果与原表结合
+    .with_columns([
+        pl.Series(name="forc_y", values=y_forc_2026)
+    ])
+
+    # 计算残差
+    .with_columns([
+        (pl.col("Volume") - pl.col("forc_y"))
+        .alias("Residual")
+    ])
+
+    # 提取需要的行
+    .select([
+        pl.col("站点"),
+        pl.col("方向"),
+        pl.col("Relative_Day_t"),
+        pl.col("Volume").alias("Actual_y"),          # 真实值 y
+        pl.col("forc_y"),                          # 模型预测值 y_hat
+        pl.col("Lag_1Y_Volume").alias("Pred_SNaive"),# 基线预测值 (去年同期)
+        pl.col("Residual")                           # 误差序列 e_t
+    ])
+
+    # 按空间(站/向)和时间排序
+    .sort(by=["站点", "方向", "Relative_Day_t"])
+
+)
+
+# 导出表格
+
+(
+    prediction_result
+    .with_columns(
+        pl.col(pl.Categorical).cast(pl.String)
+    )
+    .write_parquet("data/external/prediction_R.parquet")
+)
+
+# 开始生成SHAP矩阵
+df_y_2026_pd = df_y_2026.select(valid_features).to_pandas()
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(df_y_2026_pd)
+
+# 表 A：SHAP 值矩阵 (全为正负浮点数，代表对预测结果的推力/拉力)
+df_shap_values = pl.DataFrame(shap_values, schema=valid_features)
+
+# 表 B：原始特征矩阵 (包含真实的数值和类别)
+df_shap_features = df_y_2026.select(valid_features)
+
+# 导出为 Parquet 格式
+
+(
+    df_shap_values
+    .with_columns(
+        pl.col(pl.Categorical).cast(pl.String)
+    )
+    .write_parquet("data/external/shap_values.parquet")
+)
+
+(
+    df_shap_features
+    .with_columns(
+        pl.col(pl.Categorical).cast(pl.String)
+    )
+    .write_parquet("data/external/shap_features.parquet")
+)
