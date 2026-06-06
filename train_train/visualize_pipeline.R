@@ -7,6 +7,7 @@ library(forecast)  # 核心：时间序列预测与诊断包
 library(showtext)
 
 font_add(family = "sarasa", regular = "C:/Users/peter/AppData/Local/Microsoft/Windows/Fonts/SarasaGothicSC-Regular.ttf") 
+font_add(family = "sarasamono", regular = "C:/Users/peter/AppData/Local/Microsoft/Windows/Fonts/SarasaMonoSC-Regular.ttf")
 
 showtext_auto()
 
@@ -245,7 +246,7 @@ diagnose_residuals <- function(data, station_name, direction_name, lag_k = 10, s
   # 设定主题
   custom_theme <- theme_bw(base_size = 12) +
   theme(
-    text = element_text(family = "sarasa", size = 18),  # 全局字体基线
+    text = element_text(family = "sarasa", size = 15),  # 全局字体基线
     plot.title = element_text(face = "bold", size = 18, hjust = 0),
     strip.background = element_rect(fill = "gray95"),
     panel.grid.minor = element_blank(),
