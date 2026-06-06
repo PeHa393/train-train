@@ -148,44 +148,56 @@ shap_plot <- sv_importance(
 ) +
   # 替换默认标签，使其符合中文学术论文规范
   labs(
-    title = "XGBoost 模型特征贡献度全局解释 (SHAP Summary Plot)",
-    subtitle = "基于 2026 年春运客流监控集的博弈论特征归因",
-    x = "SHAP 值 (对客流量预测输出的冲击影响)",
-    y = "空间与时序特征 (按重要性自上而下排列)",
-    color = "特征自身数值"
+    title = "模型特征贡献度 - SHAP Summary Plot",
+    subtitle = "基于 2026 年春运客流监控集",
+    x = "SHAP",
+    y = "空间与时序特征",
+    color = "特征数值"
   ) +
   # 替换默认的着色方案，改用学术界更常用的双色渐变（低值蓝色，高值红色）
   scale_color_gradient(
     low = "#1F77B4", 
-    high = "#D62728",
-    breaks = c(0, 1),
-    labels = c("低 (Low)", "高 (High)")
+    high = "#D62728"
   ) +
-  # 应用紧凑、白底的学术期刊主题，并优化文字排版
+  # 文字排版
   theme_bw(base_size = 12) +
   theme(
+    text = element_text(family = "sarasa", size = 14),
+    panel.border = element_blank(),
     plot.title = element_text(face = "bold", size = 14, hjust = 0),
     plot.subtitle = element_text(size = 11, color = "gray30", margin = margin(b = 10)),
-    axis.title.x = element_text(margin = margin(t = 10)),
-    axis.title.y = element_text(margin = margin(r = 10)),
-    axis.text = element_text(color = "black"),
+    axis.line.x = element_line(size = 0.6, colour = "#232323"),
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_text(margin = margin(r = 20, unit = "pt")),
+    axis.title.x = element_text(margin = margin(t = 10), hjust = 0.46),
+    axis.title.y = element_blank(),
+    axis.text = element_text(color = "#232323"),
     legend.position = "right",
-    legend.title = element_text(size = 10, face = "bold"),
-    panel.grid.major.y = element_blank(), # 移除横向主网格线，使蜂群的水平分布更清晰
+    legend.margin = margin(l = 20, unit = "pt"),   # 图例整体左移（远离主图）
+    legend.title = element_text(size = 10, face = "bold", margin = margin(b = 14, unit = "pt")),
+    panel.grid.major.y = element_blank(), # 移除横向主网格线
     panel.grid.minor = element_blank()
+  ) +
+  guides(
+    colour = guide_colorbar(
+      ticks = TRUE,
+      barwidth = unit(0.3, "cm"),
+      barheight = unit(10, "cm"),
+      label.hjust = 0.5,              # 居中
+      label.theme = element_text(size = 9)
+    )
   )
 
 print(shap_plot)
 
 ggsave(
-  filename = "reports\\figures\\figure_shap_summary.tiff",
+  filename = "reports\\figures\\gg_shap_summary.svg",
   plot = shap_plot,
-  device = "tiff",
-  width = 8.5,
-  height = 6.5,
+  width = 12,
+  height = 6,
   units = "in",
   dpi = 300,
-  compression = "lzw" # LZW 无损压缩
 )
 
 # -----残差白噪声检验(单站单向的)-----
