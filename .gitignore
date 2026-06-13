@@ -1,5 +1,6 @@
 # Data
-/data/
+/data/*
+!/data/.gitkeep
 
 # Mac OS-specific storage files
 .DS_Store

@@ -165,8 +165,8 @@ shap_plot <- sv_importance(
   theme(
     text = element_text(family = "sarasa", size = 14),
     panel.border = element_blank(),
-    plot.title = element_text(face = "bold", size = 14, hjust = 0),
-    plot.subtitle = element_text(size = 11, color = "gray30", margin = margin(b = 10)),
+    plot.title = element_blank(),
+    plot.subtitle = element_blank(),
     axis.line.x = element_line(size = 0.6, colour = "#232323"),
     axis.line.y = element_blank(),
     axis.ticks.y = element_blank(),
