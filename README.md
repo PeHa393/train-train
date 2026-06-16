@@ -1,61 +1,97 @@
 # Train-train
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
+<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/"> <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter"/> </a>
 
 Just a junior SourceWork.
 
 ## Project Organization
 
-```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         train_train and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── train_train   <- Source code for use in this project.
-    │
-    ├── __init__.py             <- Makes train_train a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    └── plots.py                <- Code to create visualizations
+``` text
+E:.
+|   .env
+|   .gitignore
+|   environment.yml
+|   Makefile
+|   pyproject.toml
+|   README.md
+|   spring_festival_xgb_v1.json
+|   tree.txt
+|   
++---.vscode
+|       launch.json
+|       settings.json
+|       
++---data
+|   |   .gitkeep
+|   |   
+|   +---external
+|   |       .gitkeep
+|   |       prediction_R.parquet
+|   |       shap_features.parquet
+|   |       shap_values.parquet
+|   |       
+|   +---interim
+|   |       .gitkeep
+|   |       characterized_traincol_02.csv
+|   |       cleaned_traincol.csv
+|   |       cleaned_traincol_01.csv
+|   |       empty_traincol_2027.csv
+|   |       empty_traincol_2028.csv
+|   |       
+|   +---processed
+|   |       .gitkeep
+|   |       characterized_traincol_02.csv
+|   |       final_table_metrics.csv
+|   |       forcasted_result_2027.csv
+|   |       forcasted_result_2028.csv
+|   |       p_value_table.csv
+|   |       p_value_table.parquet
+|   |       
+|   \---raw
+|           .gitkeep
+|           traincol.xlsx
+|           
++---docs
+|       .gitkeep
+|       
++---models
+|   |   .gitkeep
+|   |   characterize_02.py
+|   |   data_clean_01.py
+|   |   forcasting_04.py
+|   |   test.py
+|   |   training_03.py
+|   |   __init__.py
+|   |   
+|   \---__pycache__
+|           data_clean.cpython-311.pyc
+|           __init__.cpython-311.pyc
+|           
++---notebooks
+|       .gitkeep
+|       
++---references
+|       .gitkeep
+|       
++---reports
+|   |   .gitkeep
+|   |   
+|   \---figures
+|           .gitkeep
+|           gg_shap_summary.svg
+|           residual_gg_天津_出站.svg
+|           residual_gg_天津_入站.svg
+|           residual_gg_天津西_出站.svg
+|           residual_gg_天津西_入站.svg
+|           
++---tests
+|       test_data.py
+|       
+\---train_train
+        pipeline.py
+        visualize_pipeline.R
+        __init__.py
+        
 ```
 
---------
-
+------------------------------------------------------------------------

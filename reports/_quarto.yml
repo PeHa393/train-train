@@ -1,0 +1,4 @@
+project:
+  post-render:
+    - python fix_captions.py main_paper.docx
+    - python fix_figure_layout.py main_paper.docx

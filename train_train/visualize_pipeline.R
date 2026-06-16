@@ -3,7 +3,7 @@ library(dplyr)   # 用于数据清洗与分组聚合
 library(gt)      # 用于构建表格
 library(shapviz)   # 专业 SHAP 可视化包
 library(ggplot2)   # 图形定制底层支持
-library(forecast)  # 核心：时间序列预测与诊断包
+library(forecast)  # 时间序列预测与诊断包
 library(showtext)
 
 font_add(family = "sarasa", regular = "C:/Users/peter/AppData/Local/Microsoft/Windows/Fonts/SarasaGothicSC-Regular.ttf") 
@@ -195,12 +195,13 @@ print(shap_plot)
 ggsave(
   filename = "reports\\figures\\gg_shap_summary.svg",
   plot = shap_plot,
-  width = 12,
+  width = 16,
   height = 6,
   units = "in",
   dpi = 300,
 )
 
+# %%
 # -----残差白噪声检验(单站单向的)-----
 
 # 封装函数
@@ -259,7 +260,7 @@ diagnose_residuals <- function(data, station_name, direction_name, lag_k = 10, s
   # 步骤 4：图形渲染与导出逻辑
   if (save_plot) {
     safe_filename <- paste0("reports\\figures\\residual_gg_", station_name, "_", direction_name, ".svg")
-      svglite::svglite(safe_filename, width = 12, height = 9)
+      svglite::svglite(safe_filename, width = 16, height = 9)
       ggtsdisplay(
         residual_ts,
         plot.type = "histogram",
@@ -292,6 +293,7 @@ diagnose_residuals <- function(data, station_name, direction_name, lag_k = 10, s
   ))
 }
 
+# %%
 # 开始运行
 
 df_eval <- arrow::read_parquet("data\\external\\prediction_R.parquet")

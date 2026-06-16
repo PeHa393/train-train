@@ -136,7 +136,7 @@ def optimize_structure(X, y, years):
     # 5. 特征审视：排列特征重要性 (Permutation Importance)
     # ---------------------------------------------------------
     print("开始进行特征排列重要性检验 (防过拟合体检)...")
-    # 我们取出最后一次验证集 (即用 2023-2025 训练，2026 验证的这一折) 来做检验
+    # 取出最后一次验证集 (即用 2023-2025 训练，2026 验证的这一折) 来做检验
     val_idx_last = cv_splits[-1][1]
     X_val_last = X.iloc[val_idx_last]
     y_val_last = y.iloc[val_idx_last]
