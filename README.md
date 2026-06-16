@@ -2,6 +2,12 @@
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/"> <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter"/> </a>
 
+基于 Polars 和 XGBoost 的春运高铁客流预测方案：融合相对时空特征工程、防御性训练与蒙特卡洛滚动推演，在四年的跨年非连续数据中预测未来两年的春运车次数据。
+
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![Polars](https://img.shields.io/badge/Polars-Data-blue)
+![XGBoost](https://img.shields.io/badge/XGBoost-Model-green)
+
 此项目仅为完成高校内数据分析作业使用，任何未经项目发布者本人许可的数据、代码、文本的挪用、修改行为都是不允许的。
 
 This project is intended solely for the completion of data analysis assignments at universities. Any unauthorized use or modification of the data, code, or text without the express permission of the project’s author is strictly prohibited.
@@ -85,51 +91,7 @@ E:.
 |   |   _quarto.yml
 |   |
 |   +---.quarto
-|   |   +---idx
-|   |   +---project-cache
-|   |   |       deno-kv-file
-|   |   |       deno-kv-file-shm
-|   |   |       deno-kv-file-wal
-|   |   |
-|   |   +---quarto-session-temp102f108017682fb9
-|   |   +---quarto-session-temp130c2bb102cc306e
-|   |   +---quarto-session-temp14218a43a4230d8c
-|   |   +---quarto-session-temp16f3497cd8bd3cc2
-|   |   +---quarto-session-temp1bae205895027286
-|   |   +---quarto-session-temp36bb9d22c58ea4b0
-|   |   +---quarto-session-temp37aa0ac903307097
-|   |   +---quarto-session-temp4ea2f655aa8b62d1
-|   |   +---quarto-session-temp4fb66a377b033e43
-|   |   +---quarto-session-temp511a50266ad8b486
-|   |   +---quarto-session-temp5e07c9c24ae171ba
-|   |   +---quarto-session-temp6092a03a88902b20
-|   |   +---quarto-session-temp64a3d35eef7aba91
-|   |   +---quarto-session-temp6bd713e4684ea929
-|   |   +---quarto-session-temp74ef0cb559a13fca
-|   |   +---quarto-session-temp77bc715c9c9e9d60
-|   |   +---quarto-session-temp863903c8a2a3cf1
-|   |   +---quarto-session-temp8c27a79fa5fa7692
-|   |   +---quarto-session-temp9dbbcb1d94f08b7f
-|   |   +---quarto-session-tempb476f5bca08f7ab9
-|   |   |       238162b20bddab58
-|   |   |       bb316c9c4f6bac8.json
-|   |   |
-|   |   +---quarto-session-tempde8748aaea8eb3b7
-|   |   +---quarto-session-tempf088a87e17096901
-|   |   +---quarto-session-tempff539be033eaf5c6
-|   |   +---xref
-|   |   |       367064f1
-|   |   |       INDEX
-|   |   |
-|   |   \---_freeze
-|   |       \---main_paper
-|   |           +---execute-results
-|   |           |       docx.json
-|   |           |
-|   |           \---figure-docx
-|   |                   fig-ACFmuti-1.png
-|   |                   fig-ACFmuti-1.svg
-|   |
+
 |   \---figures
 |           .gitkeep
 |           figure_shap_summary.tiff
