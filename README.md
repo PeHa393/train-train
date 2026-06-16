@@ -1,10 +1,10 @@
-# Train-train
+# Train-train 春运高铁数据预测
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/"> <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter"/> </a>
 
-Just a junior SourceWork.
+此项目仅为完成高校内数据分析作业使用，任何未经项目发布者本人许可的数据挪用、修改都是不允许的。
 
-## Project Organization
+## 文件结构
 
 ``` text
 E:.
