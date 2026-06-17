@@ -8,9 +8,9 @@
 ![Polars](https://img.shields.io/badge/Polars-Data-blue)
 ![XGBoost](https://img.shields.io/badge/XGBoost-Model-green)
 
-此项目仅为完成高校内数据分析作业使用，任何未经项目发布者本人许可的数据、代码、文本的挪用、修改行为都是不允许的。
+本项目为课程作业，仅供学习交流使用。未经作者明确书面许可，任何人不得将本项目的全部或部分内容用于商业目的，不得复制、修改、分发或用于其他任何用途。
 
-This project is intended solely for the completion of data analysis assignments at universities. Any unauthorized use or modification of the data, code, or text without the express permission of the project’s author is strictly prohibited.
+This project is a course assignment and is intended solely for educational and academic purposes. Without the author’s express written permission, no one may use all or any part of this project for commercial purposes, nor may they copy, modify, distribute, or use it for any other purpose.
 
 ## 文件结构 File Structure
 

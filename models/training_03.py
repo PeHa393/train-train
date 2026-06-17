@@ -208,7 +208,7 @@ def find_best_iterations(X, y, years, best_params, valid_features):
         tree_method='hist',
         enable_categorical=True,
         early_stopping_rounds=50,     # 如果连续 50 棵树验证集误差都不降，则停止
-        random_state=42,
+        random_state=64,
         n_jobs=-1
     )
     
